@@ -1,4 +1,6 @@
-# Terminal settings
+# Only run interactive stuff if this is an interactive shell
+[[ $- != *i* ]] && return
+
 export TERM="xterm-256color"
 
 # Start tmux if not already in it
@@ -9,13 +11,7 @@ fi
 export ZSH="$HOME/.oh-my-zsh"
 ZSH_THEME="robbyrussell"
 
-plugins=(
-    git
-    vi-mode 
-    yarn
-    zsh-autosuggestions 
-    fast-syntax-highlighting
-)
+plugins=( git vi-mode yarn zsh-autosuggestions fast-syntax-highlighting)
 
 HYPHEN_INSENSITIVE="true"
 ENABLE_CORRECTION="true"
@@ -27,26 +23,17 @@ alias dot='code ~/Development/dotfiles'
 alias j='code ~/Documents/journal'
 alias jordanmmck='code ~/Development/jordanmmck'
 alias theory='code ~/Documents/theory'
-alias tmux='tmux -2'
 alias c='code .'
 alias s=ls
 alias t='tree'
 alias gadd='git add .'
 alias gst='git status'
 
-typeset -A ZSH_HIGHLIGHT_STYLES
-ZSH_HIGHLIGHT_STYLES[unknown-token]='fg=160' # Red for unknown commands
-ZSH_HIGHLIGHT_STYLES[command]='fg=green'    # Green for valid commands
-ZSH_HIGHLIGHT_STYLES[path]='fg=blue,underline' # Blue and underlined for paths
-ZSH_HIGHLIGHT_STYLES[mathvar]='fg=yellow'   # Yellow for math variables
-
 # disable ctrl-s scroll lock
 stty -ixon
 
-# source /Users/jordan/.oh-my-zsh/plugins/vi-mode/vi-mode.plugin.zsh
-# source /Users/jordan/.oh-my-zsh/custom/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-# source /Users/jordan/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-# pure theme
-# autoload -U promptinit; promptinit
-# prompt pure
+eval "$(pyenv init -)"

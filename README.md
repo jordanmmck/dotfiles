@@ -2,6 +2,18 @@
 
 My dotfiles for Vim, ZSH, Tmux, etc.
 
+## syntax highlighting colors
+
+```zsh
+fast-theme -l
+fast-theme -t spa
+```
+
+install pyenv. use pyenv for python2 install.
+use nvm for website.
+
+---
+
 ## ESLint, Prettier, AirBnB, VSCode
 
 ESLint script based on [this](https://github.com/paulolramos/eslint-prettier-airbnb-react/blob/master/eslint-prettier-config.sh).

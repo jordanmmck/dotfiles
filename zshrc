@@ -1,10 +1,13 @@
 # Only run interactive stuff if this is an interactive shell
 [[ $- != *i* ]] && return
 
-export TERM="xterm-256color"
+# export TERM="xterm-256color"
+if [[ "$TERM_PROGRAM" == "iTerm.app" ]]; then
+  export TERM="xterm-256color"
+fi
 
-# Start tmux if not already in it
-if [ -z "$TMUX" ] && [ -z "$SSH_CONNECTION" ]; then
+# Start tmux unless we're in VS Code
+if [[ -z "$TMUX" && -z "$SSH_CONNECTION" && "$TERM_PROGRAM" != "vscode" ]]; then
   exec tmux
 fi
 
@@ -37,3 +40,4 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 eval "$(pyenv init -)"
+export PATH="$HOME/.local/bin:$PATH"
